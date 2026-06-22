@@ -1,0 +1,22 @@
+# Render Blueprint — Signal Bloom static site.
+# Deploy: New + → Blueprint, point at this repo. Or configure a Static Site
+# manually with the Build Command + Publish Directory below.
+services:
+  - type: web
+    name: signal-bloom
+    runtime: static
+    # --include=dev guarantees vite (a devDependency) installs even if Render
+    # sets NODE_ENV=production, which would otherwise skip it → "vite: not found".
+    buildCommand: npm install --include=dev && npm run build
+    staticPublishPath: ./dist
+    pullRequestPreviewsEnabled: true
+    headers:
+      # the hero video + generated frames are immutable — cache hard at the edge
+      - path: /frames/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable
+    routes:
+      # single-page artifact: send any unknown path back to index.html
+      - type: rewrite
+        source: /*
+        destination: /index.html

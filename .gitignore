@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.log
+.DS_Store
+
+# HEVC video master(s) — kept out of public/ so Vite never copies them into
+# dist, and out of git. The web-ready hero.mp4 (transcoded ~27MB H.264) IS
+# committed so Render can serve it. Re-transcode source lives in _masters/.
+_masters/

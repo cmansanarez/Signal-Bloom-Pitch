@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Signal Bloom — an experimental audiovisual performance system where generation itself becomes the performance." />
+  <title>SIGNAL_BLOOM // SELF-DOCUMENTING ARTIFACT</title>
+</head>
+<body>
+  <!-- ============ AMBIENT SYSTEM LAYER ============ -->
+  <canvas id="bloom-canvas" aria-hidden="true"></canvas>
+  <div id="scanlines" aria-hidden="true"></div>
+  <div id="grain" aria-hidden="true"></div>
+
+  <!-- ============ FIXED EDGE METADATA ============ -->
+  <div class="edge edge-left" aria-hidden="true">
+    <span data-glitch>SIGNAL_BLOOM</span>
+    <span class="edge-dim">RENDER_TARGET o0..o3</span>
+  </div>
+  <div class="edge edge-right" aria-hidden="true">
+    <span class="edge-dim">FPS <em id="fps-readout">--</em></span>
+    <span class="edge-dim">MOV <em id="mov-readout">I</em></span>
+  </div>
+  <div class="edge edge-bottom" aria-hidden="true">
+    <span class="edge-dim">CREATIVE_TECHNOLOGY_CAPSTONE</span>
+    <span class="edge-dim">CAM_MANSANAREZ</span>
+    <span class="edge-dim" id="scroll-readout">0000</span>
+  </div>
+
+  <!-- ============ NAV / INDEX ============ -->
+  <nav id="index-nav" aria-label="Section index">
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false">INDEX_</button>
+    <ol id="nav-list">
+      <li><a href="#hero">00 / SIGNAL</a></li>
+      <li><a href="#overview">01 / OVERVIEW</a></li>
+      <li><a href="#thesis">02 / THESIS</a></li>
+      <li><a href="#problem">03 / THE QUESTION</a></li>
+      <li><a href="#vision">04 / VISION</a></li>
+      <li><a href="#movements">05 / MOVEMENTS</a></li>
+      <li><a href="#emergence">06 / EMERGENCE</a></li>
+      <li><a href="#architecture">07 / ARCHITECTURE</a></li>
+      <li><a href="#status">08 / PROTOTYPE</a></li>
+      <li><a href="#crystallization">09 / CRYSTALLIZATION</a></li>
+      <li><a href="#collaboration">10 / COLLABORATION</a></li>
+      <li><a href="#roadmap">11 / ROADMAP</a></li>
+      <li><a href="#statement">12 / STATEMENT</a></li>
+    </ol>
+  </nav>
+
+  <main>
+    <!-- ============ 00 HERO ============ -->
+    <section id="hero" class="hero">
+      <div class="hero-imagewrap">
+        <video id="hero-video" class="hero-img" poster="./frames/hero-poster.jpg"
+               autoplay muted loop playsinline preload="auto"
+               aria-label="Signal Bloom live performance capture">
+          <source src="./frames/hero.mp4" type="video/mp4" />
+        </video>
+        <pre class="hero-code code-texture" aria-hidden="true">osc(6, 0.04, () =&gt; 0.6 + micLevel * 0.4)
+  .color(0.0, 0.85, 1.0)
+  .layer( gradient(2).color(0.38, 0.0, 0.55) )
+  .modulate( noise(22, 0.08), 0.5 )
+  .out(o0)</pre>
+        <button id="audio-toggle" class="audio-toggle" type="button"
+                aria-pressed="false" data-state="muted">
+          <span class="at-icon" aria-hidden="true">◢</span>
+          <span class="at-label">ENABLE AUDIO</span>
+        </button>
+      </div>
+      <div class="hero-text">
+        <p class="kicker">EXPERIMENTAL AUDIOVISUAL PERFORMANCE SYSTEM</p>
+        <h1 class="hero-title" data-glitch data-text="SIGNAL BLOOM">SIGNAL<br>BLOOM</h1>
+        <p class="hero-sub">LIVE CODING · GENERATIVE ART · ARTIFICIAL INTELLIGENCE · IMPROVISATION — A SINGLE EVOLVING ENVIRONMENT.</p>
+        <p class="hero-meta">[ THIS PAGE IS NOT A BROCHURE. IT IS THE SYSTEM ATTEMPTING TO DOCUMENT ITSELF. ]</p>
+      </div>
+      <div class="scroll-hint" aria-hidden="true">SCROLL ↓ INITIATE</div>
+    </section>
+
+    <!-- ============ 01 OVERVIEW ============ -->
+    <section id="overview" class="band reveal">
+      <header class="band-head">
+        <span class="sec-num">01</span>
+        <h2 class="sec-title" data-glitch data-text="PROJECT OVERVIEW">PROJECT OVERVIEW</h2>
+      </header>
+      <div class="grid grid-2">
+        <div class="prose">
+          <p>Signal Bloom is an experimental audiovisual performance system that combines live coding, generative art, artificial intelligence, and improvisational performance into a single evolving environment.</p>
+          <p>The project explores how performers and machines can collaborate to create emergent visual experiences in real time.</p>
+          <p class="hl">Rather than relying on pre-rendered media, Signal Bloom transforms the act of generation itself into a performative event. Images, forms, textures, and visual structures emerge live during performance through interactions between code, sound, AI systems, and human improvisation.</p>
+        </div>
+        <ul class="spec-list" aria-label="System inputs">
+          <li><span class="k">INPUT_00</span><span class="v">AUDIO / LIVE</span></li>
+          <li><span class="k">INPUT_01</span><span class="v">PERFORMER / LIVE CODING + IMPROV</span></li>
+          <li><span class="k">INPUT_02</span><span class="v">AUDIENCE / ENERGY + INTERACTION</span></li>
+          <li><span class="k">PIPE_00</span><span class="v">HYDRA → COMFYUI → ROUTER</span></li>
+          <li><span class="k">OUT_00</span><span class="v">LIVE VISUAL OUTPUT / PROJECTION</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 02 THESIS ============ -->
+    <section id="thesis" class="band reveal">
+      <header class="band-head">
+        <span class="sec-num">02</span>
+        <h2 class="sec-title" data-glitch data-text="THESIS">THESIS</h2>
+      </header>
+      <div class="grid grid-2 grid-flip">
+        <figure class="figure">
+          <img src="./frames/orpheus-2.jpg" alt="Generated figure modulated through Signal Bloom" loading="lazy" />
+          <figcaption>FIG.02 — GEN_OUTPUT / orpheus · sd → hydra modulated</figcaption>
+        </figure>
+        <div class="prose">
+          <p class="lead">Signal Bloom explores how improvisation between human and machine actors creates conditions for emergence.</p>
+          <p>The project investigates the evolving relationship between:</p>
+          <ul class="actor-list">
+            <li>PERFORMER</li>
+            <li>MUSICIAN</li>
+            <li>MACHINE</li>
+            <li>GENERATIVE SYSTEMS</li>
+            <li>AUDIENCE</li>
+          </ul>
+          <p>Through live interaction, these participants contribute to experiences that cannot be fully predicted or authored by any single actor.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 03 PROBLEM ============ -->
+    <section id="problem" class="band band-narrow reveal">
+      <header class="band-head">
+        <span class="sec-num">03</span>
+        <h2 class="sec-title" data-glitch data-text="THE QUESTION">THE QUESTION</h2>
+      </header>
+      <div class="problem-flow">
+        <p>Signal Bloom explores a different relationship between generation and performance. Images, forms, and visual structures are produced live as part of the event itself.</p>
+        <div class="terminal-lines">
+          <span>&gt; audio.listen()<span class="ok">        // live</span></span>
+          <span>&gt; generate(prompt)<span class="ok">      // streaming</span></span>
+          <span>&gt; hydra.modulate(o0)<span class="ok">    // live</span></span>
+          <span class="live">&gt; emergence := performance    // TRUE</span>
+        </div>
+        <p class="big-q" data-glitch data-text="What emerges when generation becomes the performance?">What emerges when generation becomes the performance?</p>
+      </div>
+    </section>
+
+    <!-- ============ 04 VISION ============ -->
+    <section id="vision" class="band reveal">
+      <header class="band-head">
+        <span class="sec-num">04</span>
+        <h2 class="sec-title" data-glitch data-text="ARTISTIC VISION">ARTISTIC VISION</h2>
+      </header>
+      <div class="grid grid-2">
+        <div class="prose">
+          <p>Signal Bloom exists at the intersection of disciplines. The visual language draws inspiration from signal processing, cybernetic systems, digital emergence, recursive structures, iridescent materials, and computational organisms.</p>
+          <p class="hl">The work seeks to balance technological and organic forms, creating environments that feel simultaneously synthetic and alive.</p>
+        </div>
+        <ul class="tag-cloud" aria-label="Intersections">
+          <li>LIVE CODING</li>
+          <li>GENERATIVE ART</li>
+          <li>AI-ASSISTED CREATIVITY</li>
+          <li>QUEER FUTURISM</li>
+          <li>GLITCH AESTHETICS</li>
+          <li>IMMERSIVE MEDIA</li>
+          <li>EXPERIMENTAL PERFORMANCE</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 05 MOVEMENTS ============ -->
+    <section id="movements" class="band reveal">
+      <header class="band-head">
+        <span class="sec-num">05</span>
+        <h2 class="sec-title" data-glitch data-text="NARRATIVE FRAMEWORK">NARRATIVE FRAMEWORK</h2>
+        <p class="band-note">ORPHEUS / EURYDICE — A MYTHIC FRAMEWORK FOR TRANSFORMATION. EACH MOVEMENT BINDS TO A LIVE HYDRA SKETCH.</p>
+      </header>
+      <ol class="movements" id="movements-list">
+        <!-- movements injected by main.js from real sketch source -->
+      </ol>
+    </section>
+
+    <!-- ============ 06 EMERGENCE ============ -->
+    <section id="emergence" class="band band-narrow reveal">
+      <header class="band-head">
+        <span class="sec-num">06</span>
+        <h2 class="sec-title" data-glitch data-text="IMPROVISATION & EMERGENCE">IMPROVISATION &amp; EMERGENCE</h2>
+      </header>
+      <div class="emergence-grid">
+        <div class="def">
+          <span class="def-term">IMPROVISATION</span>
+          <span class="def-body">describes the actions.</span>
+        </div>
+        <div class="def">
+          <span class="def-term">EMERGENCE</span>
+          <span class="def-body">describes the outcomes.</span>
+        </div>
+        <ul class="improv-actors">
+          <li>THE PERFORMER IMPROVISES.</li>
+          <li>THE MUSICIAN IMPROVISES.</li>
+          <li>THE GENERATIVE SYSTEMS IMPROVISE.</li>
+          <li>THE AI SYSTEM INTRODUCES VARIATION AND UNCERTAINTY.</li>
+        </ul>
+        <p class="emergence-conclusion" data-glitch data-text="Through these interactions, emergence becomes possible.">Through these interactions, emergence becomes possible.</p>
+      </div>
+    </section>
+
+    <!-- ============ 07 ARCHITECTURE ============ -->
+    <section id="architecture" class="band reveal">
+      <header class="band-head">
+        <span class="sec-num">07</span>
+        <h2 class="sec-title" data-glitch data-text="SYSTEM ARCHITECTURE">SYSTEM ARCHITECTURE</h2>
+      </header>
+      <div class="arch-cols">
+        <div class="arch-col">
+          <h3 class="arch-h">VISUAL SYSTEMS</h3>
+          <ul><li>HYDRA</li><li>THREE.JS</li><li>WEBGL</li></ul>
+        </div>
+        <div class="arch-col">
+          <h3 class="arch-h">AI SYSTEMS</h3>
+          <ul><li>COMFYUI</li><li>STABLE DIFFUSION WORKFLOWS</li><li>LOCAL IMAGE GENERATION</li></ul>
+        </div>
+        <div class="arch-col">
+          <h3 class="arch-h">PERFORMANCE SYSTEMS</h3>
+          <ul><li>AUDIO REACTIVE INPUTS</li><li>LIVE CODING</li><li>KEYBOARD DRIVEN CONTROLS</li><li>REAL-TIME VISUAL PROCESSING</li></ul>
+        </div>
+        <figure class="figure arch-fig arch-diagram">
+          <img src="./frames/system-overview.png" alt="Signal Bloom system overview diagram, generated by the system" loading="lazy" />
+          <figcaption>FIG.07 — SYSTEM_OVERVIEW / inputs → gen → router → output</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ 08 PROTOTYPE STATUS ============ -->
+    <section id="status" class="band reveal">
+      <header class="band-head">
+        <span class="sec-num">08</span>
+        <h2 class="sec-title" data-glitch data-text="PROTOTYPE STATUS">PROTOTYPE STATUS</h2>
+      </header>
+      <div class="milestones">
+        <div class="milestone">
+          <div class="ms-head"><span class="ms-tag done">MILESTONE 1</span><span class="ms-state">COMPLETE</span></div>
+          <ul>
+            <li>Three.js tunnel environment</li>
+            <li>Hydra integration</li>
+            <li>Audio-reactive visual behaviors</li>
+            <li>Live performer interface</li>
+            <li>Sketch management</li>
+            <li>Hot reloading workflows</li>
+          </ul>
+        </div>
+        <div class="milestone">
+          <div class="ms-head"><span class="ms-tag done">MILESTONE 2</span><span class="ms-state">COMPLETE</span></div>
+          <ul>
+            <li>Local ComfyUI integration</li>
+            <li>Prompt-driven image generation</li>
+            <li>Streaming denoising previews</li>
+            <li>Hydra processing of generated forms</li>
+            <li>Audio-reactive generated imagery</li>
+            <li>Recursive image-to-image generation</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 09 CRYSTALLIZATION ============ -->
+    <section id="crystallization" class="band reveal">
+      <header class="band-head">
+        <span class="sec-num">09</span>
+        <h2 class="sec-title" data-glitch data-text="CRYSTALLIZATION ARC">CRYSTALLIZATION ARC</h2>
+      </header>
+      <div class="grid grid-2 grid-flip">
+        <figure class="figure">
+          <img src="./frames/bloom-2.jpg" alt="Generated bloom form modulated through Signal Bloom" loading="lazy" />
+          <figcaption>FIG.09 — BLOOM / noise → structure → form · hydra modulated</figcaption>
+        </figure>
+        <div class="prose">
+          <p>Signal Bloom exposes the image generation process itself.</p>
+          <div class="crystal-chain">
+            <span>NOISE</span><i>→</i><span>STRUCTURE</span><i>→</i><span>FORM</span><i>→</i><span class="end">IMAGE</span>
+          </div>
+          <p>Intermediate denoising frames are streamed directly into the visual environment. The audience witnesses emergence as it occurs.</p>
+          <p class="hl">The audience does not simply receive the image. They experience its becoming.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 10 COLLABORATION ============ -->
+    <section id="collaboration" class="band band-narrow reveal">
+      <header class="band-head">
+        <span class="sec-num">10</span>
+        <h2 class="sec-title" data-glitch data-text="COLLABORATION">COLLABORATION</h2>
+      </header>
+      <div class="collab">
+        <p class="collab-label">MUSICAL COLLABORATOR</p>
+        <p class="collab-name" data-glitch data-text="RAYONISM (MATT)">RAYONISM (MATT)</p>
+        <p>Signal Bloom is being developed as a collaborative audiovisual performance.</p>
+        <ul class="collab-areas">
+          <li>MODULAR SYNTHESIS</li>
+          <li>IMPROVISATION</li>
+          <li>EXPERIMENTAL SOUND DESIGN</li>
+          <li>LIVE AUDIOVISUAL DIALOGUE</li>
+          <li>EMERGENT PERFORMANCE</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ============ 11 ROADMAP ============ -->
+    <section id="roadmap" class="band reveal">
+      <header class="band-head">
+        <span class="sec-num">11</span>
+        <h2 class="sec-title" data-glitch data-text="CURRENT ROADMAP">CURRENT ROADMAP</h2>
+      </header>
+      <div class="roadmap">
+        <div class="rm-col">
+          <h3 class="rm-h done">COMPLETED</h3>
+          <ul class="rm-list">
+            <li>✓ ARTISTIC RESEARCH</li>
+            <li>✓ CONCEPT DEVELOPMENT</li>
+            <li>✓ NARRATIVE FRAMEWORK</li>
+            <li>✓ HYDRA INTEGRATION</li>
+            <li>✓ THREE.JS ENVIRONMENT</li>
+            <li>✓ COMFYUI BRIDGE</li>
+            <li>✓ AI GENERATION PIPELINE</li>
+          </ul>
+        </div>
+        <div class="rm-col">
+          <h3 class="rm-h prog">IN PROGRESS</h3>
+          <ul class="rm-list">
+            <li>· PERFORMER INTERFACE REFINEMENT</li>
+            <li>· RECURSIVE GENERATION WORKFLOWS</li>
+            <li>· VISUAL STUDIES</li>
+            <li>· PRODUCTION PLANNING</li>
+            <li>· VENUE PLANNING</li>
+            <li>· PERFORMANCE TESTING</li>
+          </ul>
+        </div>
+        <div class="rm-col">
+          <h3 class="rm-h next">UPCOMING</h3>
+          <ul class="rm-list">
+            <li>□ PUBLIC PERFORMANCE</li>
+            <li>□ CAPSTONE PRESENTATION</li>
+            <li>□ INSTALLATION DOCUMENTATION</li>
+            <li>□ OPEN-SOURCE RELEASE EXPLORATION</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ 12 FINAL STATEMENT ============ -->
+    <section id="statement" class="band band-narrow reveal final">
+      <header class="band-head">
+        <span class="sec-num">12</span>
+        <h2 class="sec-title" data-glitch data-text="FINAL STATEMENT">FINAL STATEMENT</h2>
+      </header>
+      <div class="statement">
+        <p>Signal Bloom is not simply a software project.</p>
+        <p>It is an investigation into what happens when performers, machines, and generative systems improvise together.</p>
+        <p class="big-statement" data-glitch data-text="Performers and machines shape an evolving visual environment.">Performers and machines shape an evolving visual environment.</p>
+        <p class="big-statement hl" data-glitch data-text="Each performance becomes an experiment in collaboration, uncertainty, and transformation.">Each performance becomes an experiment in collaboration, uncertainty, and transformation.</p>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="foot-row">
+        <span>SIGNAL_BLOOM</span>
+        <a href="https://github.com/cmansanarez/Signal_Bloom" target="_blank" rel="noopener">GITHUB / cmansanarez/Signal_Bloom ↗</a>
+        <span>CAM_MANSANAREZ</span>
+      </div>
+      <div class="foot-row foot-dim">
+        <span>CREATIVE TECHNOLOGY CAPSTONE</span>
+        <span id="foot-render">RENDERED BY SIGNAL BLOOM</span>
+      </div>
+    </footer>
+  </main>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
