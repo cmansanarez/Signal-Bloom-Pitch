@@ -438,6 +438,11 @@ main { position: relative; z-index: 1; }
 .arch-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
 .arch-col { border: 1px solid var(--line); border-right: none; padding: 20px; }
 .arch-col:last-of-type { border-right: 1px solid var(--line); }
+.arch-note {
+  grid-column: 1 / -1; border-top: 1px solid var(--line); padding-top: 14px; margin-top: 0;
+  font-size: 13px; letter-spacing: 0.1em; line-height: 1.7;
+  color: var(--ink-dim); text-transform: uppercase; max-width: 80ch;
+}
 .arch-h { font-size: 12px; letter-spacing: 0.24em; color: var(--corrupt); margin-bottom: 14px; text-transform: uppercase; }
 .arch-col ul li {
   font-size: 14.5px; letter-spacing: 0.05em; color: var(--ink);
