@@ -124,6 +124,8 @@ body::before {
   .tag-cloud li { animation: none; }
   .tw-char { animation: none; color: inherit; }
   .tw-cursor { display: none; }
+  .bloom-frame { animation: none; opacity: 0; }
+  .bloom-frame:first-child { opacity: 1; }
 }
 
 /* =====================================================================
@@ -512,6 +514,42 @@ main { position: relative; z-index: 1; }
 /* =====================================================================
    CRYSTALLIZATION
    ===================================================================== */
+
+/* 7-frame crossfade: 28s cycle, each frame holds ~4s with 1s fade overlap.
+   Delays calculated so each frame fires 4s after the previous, looping
+   seamlessly: frame 1 delay=-1s puts it mid-fade-in at t=0; frame 7
+   fades out exactly as frame 1 re-enters at t=27s. */
+.bloom-stack {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+.bloom-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  animation: bloom-fade 28s linear infinite;
+}
+@keyframes bloom-fade {
+  0%      { opacity: 0; }
+  3.57%   { opacity: 1; }
+  14.29%  { opacity: 1; }
+  17.86%  { opacity: 0; }
+  100%    { opacity: 0; }
+}
+.bloom-frame:nth-child(1) { animation-delay:  -1s; }
+.bloom-frame:nth-child(2) { animation-delay: -25s; }
+.bloom-frame:nth-child(3) { animation-delay: -21s; }
+.bloom-frame:nth-child(4) { animation-delay: -17s; }
+.bloom-frame:nth-child(5) { animation-delay: -13s; }
+.bloom-frame:nth-child(6) { animation-delay:  -9s; }
+.bloom-frame:nth-child(7) { animation-delay:  -5s; }
+.bloom-stack.is-paused .bloom-frame { animation-play-state: paused; }
+
 .crystal-chain { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 20px 0; }
 .crystal-chain span {
   border: 1px solid var(--line-hot); padding: 8px 12px; font-size: 14px;

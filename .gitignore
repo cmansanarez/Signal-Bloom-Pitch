@@ -7,3 +7,7 @@ dist/
 # dist, and out of git. The web-ready hero.mp4 (transcoded ~27MB H.264) IS
 # committed so Render can serve it. Re-transcode source lives in _masters/.
 _masters/
+
+# Raw PNG exports — production assets are the WebP versions in this directory.
+# WebPs are committed; PNGs stay local only.
+public/frames/bloom-*.png

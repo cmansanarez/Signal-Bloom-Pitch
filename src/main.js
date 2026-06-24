@@ -490,6 +490,14 @@ function start() {
   initMovementCanvases()
   initTypewriters()
 
+  // Pause the crystallization crossfade when off-screen
+  const bloomStack = document.querySelector('.bloom-stack')
+  if (bloomStack && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    new IntersectionObserver(entries => {
+      bloomStack.classList.toggle('is-paused', !entries[0].isIntersecting)
+    }, { rootMargin: '200px 0px 200px 0px' }).observe(bloomStack)
+  }
+
   const canvas = document.getElementById('bloom-canvas')
   const ctx = canvas ? initGL(canvas) : null
 
@@ -566,7 +574,7 @@ function start() {
         vision:      { hue: 0.78, energy: 0.55, chaos: 0.35, corrupt: 0.45 },
         emergence:   { hue: 0.58, energy: 0.6, chaos: 0.4, corrupt: 0.3 },
         architecture:{ hue: 0.66, energy: 0.45, chaos: 0.25, corrupt: 0.25 },
-        status:      { hue: 0.5, energy: 0.4, chaos: 0.2, corrupt: 0.15 },
+        'open-systems': { hue: 0.86, energy: 0.5, chaos: 0.3, corrupt: 0.4 },
         crystallization:{ hue: 0.8, energy: 0.7, chaos: 0.45, corrupt: 0.4 },
         collaboration:{ hue: 0.88, energy: 0.5, chaos: 0.3, corrupt: 0.5 },
         roadmap:     { hue: 0.5, energy: 0.4, chaos: 0.2, corrupt: 0.15 },
