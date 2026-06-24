@@ -122,6 +122,8 @@ body::before {
   #scanlines::after, #grain, .scroll-hint { animation: none; }
   .mv-canvas { display: none; }
   .tag-cloud li { animation: none; }
+  .tw-char { animation: none; color: inherit; }
+  .tw-cursor { display: none; }
 }
 
 /* =====================================================================
@@ -466,6 +468,18 @@ main { position: relative; z-index: 1; }
   color: var(--ink-dim); text-transform: uppercase; max-width: 80ch;
 }
 .arch-h { font-size: 12px; letter-spacing: 0.24em; color: var(--corrupt); margin-bottom: 14px; text-transform: uppercase; }
+
+/* typewriter reveal — fires once on IntersectionObserver, driven by main.js */
+@keyframes tw-settle { to { color: var(--ink-dim); } }
+.tw-char {
+  color: var(--corrupt);
+  animation: tw-settle 1.2s 0.5s forwards;
+}
+@keyframes tw-blink { 50% { opacity: 0; } }
+.tw-cursor {
+  color: var(--corrupt);
+  animation: tw-blink 0.5s step-start infinite;
+}
 .arch-col ul li {
   font-size: 14.5px; letter-spacing: 0.05em; color: var(--ink);
   padding: 8px 0; border-bottom: 1px dotted var(--line); text-transform: uppercase;

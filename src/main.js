@@ -446,6 +446,41 @@ function initMovementCanvases() {
 }
 
 /* ---------------------------------------------------------------------
+   TYPEWRITER REVEAL
+   Fires once per [data-typewriter] element when it enters the viewport.
+   Characters start as --corrupt (magenta) and CSS-animate to --ink-dim.
+   --------------------------------------------------------------------- */
+function initTypewriters() {
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return
+  document.querySelectorAll('[data-typewriter]').forEach(el => {
+    const full = el.textContent
+    el.setAttribute('aria-label', full)
+    el.innerHTML = ''
+    const cursor = document.createElement('span')
+    cursor.className = 'tw-cursor'
+    cursor.setAttribute('aria-hidden', 'true')
+    cursor.textContent = '_'
+    const obs = new IntersectionObserver(entries => {
+      if (!entries[0].isIntersecting) return
+      obs.disconnect()
+      el.appendChild(cursor)
+      let i = 0
+      const tick = setInterval(() => {
+        const span = document.createElement('span')
+        span.className = 'tw-char'
+        span.textContent = full[i]
+        el.insertBefore(span, cursor)
+        if (++i >= full.length) {
+          clearInterval(tick)
+          setTimeout(() => cursor.remove(), 900)
+        }
+      }, 28)
+    }, { threshold: 0.4 })
+    obs.observe(el)
+  })
+}
+
+/* ---------------------------------------------------------------------
    RUNTIME
    --------------------------------------------------------------------- */
 function start() {
@@ -453,6 +488,7 @@ function start() {
   document.documentElement.classList.add('js')
   renderMovements()
   initMovementCanvases()
+  initTypewriters()
 
   const canvas = document.getElementById('bloom-canvas')
   const ctx = canvas ? initGL(canvas) : null
