@@ -11,3 +11,7 @@ _masters/
 # Raw PNG exports — production assets are the WebP versions in this directory.
 # WebPs are committed; PNGs stay local only.
 public/frames/bloom-*.png
+
+# Visual Studies source exports (M1-*.png …) — the page serves the
+# catalog-named WebPs (sb-i-01.webp …) converted from these.
+public/studies/M*.png
