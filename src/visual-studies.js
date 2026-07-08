@@ -30,7 +30,7 @@ const CATALOG = [
       { cat: 'SB-I-02', prompt: null,
         notes: 'Companions held in a floating glass sphere — harmony as an enclosed ecology.' },
       { cat: 'SB-I-03', prompt: null,
-        notes: 'A crystalline cathedral grown rather than built. The world before interruption.' },
+        notes: 'A crystalline cathedral with the structure of something grown. The world before interruption.' },
     ],
   },
   {
@@ -98,7 +98,7 @@ const CATALOG = [
     mood: { hue: 0.58, energy: 0.9, chaos: 0.5, corrupt: 0.5 },
     plates: [
       { cat: 'SB-VII-01', prompt: null,
-        notes: 'Not a return — a becoming. The figure re-emerges fused with the bloom.' },
+        notes: 'A becoming: the figure re-emerges already fused with the bloom.' },
       { cat: 'SB-VII-02', prompt: null,
         notes: 'The final ecology: cathedral, chrome birds, floating spheres, and bloom in coexistence.' },
       { cat: 'SB-VII-03', prompt: null,
