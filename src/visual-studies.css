@@ -1,0 +1,172 @@
+/* =====================================================================
+   SIGNAL BLOOM // VISUAL STUDIES
+   Exhibition-catalog layer on top of the core visual system (style.css).
+   Plates are large, hover states subtle, metadata minimal.
+   ===================================================================== */
+
+/* ----- hero ----- */
+.vs-hero {
+  position: relative; min-height: 100vh;
+  max-width: var(--maxw); margin: 0 auto;
+  padding: 120px 46px 90px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.vs-title {
+  font-size: clamp(54px, 11vw, 120px); line-height: 0.86;
+  letter-spacing: 0.01em; color: var(--signal); margin: 6px 0 20px;
+  text-shadow: 0 0 22px rgba(0,240,255,0.25);
+}
+.vs-tagline {
+  font-size: clamp(15px, 2.2vw, 20px); letter-spacing: 0.13em;
+  color: var(--ink); text-transform: uppercase; margin-bottom: 46px;
+}
+.vs-hero-essay { max-width: 66ch; }
+.vs-hero-essay em { font-style: normal; color: #eafcff; }
+@media (max-width: 760px) { .vs-hero { padding: 110px 18px 70px; } }
+
+/* ----- the world / species index ----- */
+.species-cloud { display: flex; flex-wrap: wrap; gap: 10px; align-content: flex-start; }
+.species-cloud li {
+  border: 1px solid var(--line-hot); padding: 9px 13px;
+  font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--ink); transition: var(--t);
+}
+.species-cloud li:hover { color: var(--bg); background: var(--signal); border-color: var(--signal); }
+.species-cloud li:nth-child(3n):hover { background: var(--corrupt); border-color: var(--corrupt); }
+
+.spec-list .v-cyan    { color: var(--signal); }
+.spec-list .v-magenta { color: var(--corrupt); }
+.spec-list .v-gold    { color: var(--alert); }
+
+/* ----- cross-link to development journal ----- */
+.journal-link {
+  margin-top: 44px; border: 1px solid var(--line); padding: 20px 22px;
+  background: rgba(0,8,10,0.55);
+}
+.journal-link p { max-width: 62ch; margin-bottom: 12px; color: var(--ink); }
+.journal-cta {
+  font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--line-hot);
+}
+.pending-tag {
+  font-size: 10px; letter-spacing: 0.24em; color: var(--alert);
+  border: 1px solid var(--alert); padding: 2px 7px; margin-left: 10px;
+}
+
+/* ----- movement bands ----- */
+.mv-lede {
+  margin-top: 16px; font-size: clamp(15px, 2vw, 18px); line-height: 1.62;
+  color: var(--ink); max-width: 58ch;
+}
+
+/* ----- plates (gallery) -----
+   Plate 01 of each movement leads on its own centered row; 02 + 03 sit
+   side by side. Studies are 512px squares — the lead plate is capped so
+   it never upscales past legibility. Single column on small screens. */
+.plates { display: grid; grid-template-columns: 1fr 1fr; gap: 34px; }
+.plate { margin: 0; }
+.plate:first-child { grid-column: 1 / -1; width: 100%; max-width: 720px; justify-self: center; }
+@media (max-width: 820px) { .plates { grid-template-columns: 1fr; gap: 26px; } }
+
+.plate-view {
+  display: block; width: 100%; padding: 0; cursor: zoom-in;
+  background: rgba(0,6,8,0.5); border: 1px solid var(--line-hot);
+  transition: var(--t);
+}
+.plate-view img {
+  width: 100%; height: auto; display: block;
+  filter: saturate(1.1) contrast(1.03);
+  transition: filter var(--t);
+}
+.plate-view:hover { border-color: var(--corrupt); }
+.plate-view:hover img { filter: saturate(1.25) contrast(1.06); }
+
+/* pending study — slot reserved, render not yet transferred */
+.plate.is-pending .plate-view { cursor: default; }
+.plate-pending {
+  aspect-ratio: 3 / 2; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 12px;
+  background:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.10'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at center, rgba(0,240,255,0.05), rgba(0,0,0,0.6) 75%);
+}
+.plate-pending .pp-cat { font-size: 15px; letter-spacing: 0.24em; color: var(--line-hot); }
+.plate-pending .pp-label {
+  font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--ink-faint); animation: blink 2.2s steps(2) infinite;
+}
+
+.plate figcaption {
+  display: flex; justify-content: space-between; gap: 14px;
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-dim); padding: 8px 2px 0;
+}
+.plate-cat { color: var(--signal); font-size: 12px; }
+.plate.is-pending .plate-cat { color: var(--ink-faint); }
+
+/* collapsible metadata — the artwork stays the focus */
+.plate-meta { margin-top: 6px; border-top: 1px dotted var(--line); }
+.plate-meta summary {
+  font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--ink-faint); padding: 7px 2px; cursor: pointer;
+  list-style: none; transition: color var(--t);
+}
+.plate-meta summary::-webkit-details-marker { display: none; }
+.plate-meta summary::before { content: "▸ "; color: var(--line-hot); }
+.plate-meta[open] summary::before { content: "▾ "; color: var(--corrupt); }
+.plate-meta summary:hover { color: var(--signal); }
+.plate-meta dl {
+  display: grid; grid-template-columns: 90px 1fr; gap: 6px 14px;
+  padding: 4px 2px 12px; font-size: 12.5px; line-height: 1.55;
+}
+.plate-meta dt { color: var(--corrupt); letter-spacing: 0.18em; font-size: 10px; padding-top: 2px; }
+.plate-meta dd { color: var(--ink-dim); margin: 0; }
+.plate-meta dd.pending { color: var(--ink-faint); }
+
+@media (prefers-reduced-motion: reduce) {
+  .plate-pending .pp-label { animation: none; }
+}
+
+/* ----- closing ----- */
+.archive-note {
+  margin-top: 34px; font-size: 12px; letter-spacing: 0.22em;
+  color: var(--ink-dim); text-transform: uppercase;
+}
+
+/* ----- lightbox ----- */
+.lightbox {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: center; gap: 14px;
+  background: rgba(0,0,0,0.94); padding: 54px 18px 42px;
+}
+.lightbox[hidden] { display: none; }
+.lb-stage { max-width: min(1400px, 92vw); margin: 0; text-align: center; }
+.lb-stage img {
+  max-width: 100%; max-height: 80vh; width: auto; height: auto;
+  margin: 0 auto; border: 1px solid var(--line-hot);
+}
+.lb-caption {
+  display: flex; justify-content: center; gap: 22px; padding-top: 12px;
+  font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase;
+}
+.lb-cat { color: var(--signal); }
+.lb-mv { color: var(--ink-dim); }
+.lb-close {
+  position: absolute; top: 16px; right: 18px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em;
+  color: var(--signal); background: rgba(0,0,0,0.72);
+  border: 1px solid var(--line-hot); padding: 7px 12px; cursor: pointer;
+  transition: var(--t);
+}
+.lb-close:hover { color: var(--bg); background: var(--corrupt); border-color: var(--corrupt); }
+.lb-arrow {
+  font-family: var(--mono); font-size: 22px; line-height: 1;
+  color: var(--ink-dim); background: transparent;
+  border: 1px solid var(--line); padding: 14px 12px; cursor: pointer;
+  transition: var(--t); flex: 0 0 auto;
+}
+.lb-arrow:hover { color: var(--signal); border-color: var(--line-hot); }
+@media (max-width: 760px) {
+  .lightbox { gap: 8px; padding: 54px 8px 34px; }
+  .lb-arrow { padding: 10px 8px; font-size: 18px; }
+}

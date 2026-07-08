@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
+import { fileURLToPath, URL } from 'node:url'
 
-// Static single-page build. Relative base so the artifact can be served
+// Static multi-page build. Relative base so the artifact can be served
 // from any path (subdirectory, file host, capstone server).
 export default defineConfig({
   base: './',
@@ -8,5 +9,11 @@ export default defineConfig({
   build: {
     target: 'es2020',
     assetsInlineLimit: 0,
+    rollupOptions: {
+      input: {
+        main: fileURLToPath(new URL('./index.html', import.meta.url)),
+        'visual-studies': fileURLToPath(new URL('./visual-studies.html', import.meta.url)),
+      },
+    },
   },
 })

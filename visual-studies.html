@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Visual Studies — the visual research archive of Signal Bloom. Concept studies, world-building exercises, and prompt experiments documenting the evolution of the project's symbolic language." />
+  <title>VISUAL_STUDIES // SIGNAL_BLOOM</title>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <!-- ============ AMBIENT SYSTEM LAYER ============ -->
+  <canvas id="bloom-canvas" aria-hidden="true"></canvas>
+  <div id="scanlines" aria-hidden="true"></div>
+  <div id="grain" aria-hidden="true"></div>
+
+  <!-- ============ FIXED EDGE METADATA ============ -->
+  <div class="edge edge-left" aria-hidden="true">
+    <span data-glitch>VISUAL_STUDIES</span>
+    <span class="edge-dim">ARCHIVE SB-I .. SB-VII</span>
+  </div>
+  <div class="edge edge-right" aria-hidden="true">
+    <span class="edge-dim">FPS <em id="fps-readout">--</em></span>
+    <span class="edge-dim">MOV <em id="mov-readout">–</em></span>
+  </div>
+  <div class="edge edge-bottom" aria-hidden="true">
+    <span class="edge-dim">VISUAL_RESEARCH_ARCHIVE</span>
+    <span class="edge-dim">CAM_MANSANAREZ</span>
+    <span class="edge-dim" id="scroll-readout">0000</span>
+  </div>
+
+  <!-- ============ NAV / INDEX ============ -->
+  <nav id="index-nav" aria-label="Section index">
+    <button class="nav-toggle" id="nav-toggle" aria-expanded="false">INDEX_</button>
+    <ol id="nav-list">
+      <li class="nav-page"><a href="./index.html">← SIGNAL_BLOOM / HOME</a></li>
+      <li><a href="#hero">00 / ARCHIVE</a></li>
+      <li><a href="#world">01 / THE WORLD</a></li>
+      <li><a href="#mv-i">I / THE SONG BEFORE LOSS</a></li>
+      <li><a href="#mv-ii">II / THE FRACTURE</a></li>
+      <li><a href="#mv-iii">III / DESCENT</a></li>
+      <li><a href="#mv-iv">IV / NEGOTIATION</a></li>
+      <li><a href="#mv-v">V / THE ASCENT</a></li>
+      <li><a href="#mv-vi">VI / THE TURN</a></li>
+      <li><a href="#mv-vii">VII / SIGNAL BLOOM</a></li>
+      <li><a href="#reflection">Ω / REFLECTION</a></li>
+    </ol>
+  </nav>
+
+  <main id="content" tabindex="-1">
+    <!-- ============ 00 HERO ============ -->
+    <section id="hero" class="vs-hero">
+      <p class="kicker">VISUAL RESEARCH ARCHIVE // SIGNAL_BLOOM</p>
+      <h1 class="vs-title" data-glitch data-text="VISUAL STUDIES">VISUAL<br>STUDIES</h1>
+      <p class="vs-tagline">Building a mythology for emergence.</p>
+      <div class="vs-hero-essay prose">
+        <p class="lead">The images collected here are not finished artworks. They are visual research — concept studies, world-building exercises, prompt experiments — made while developing the symbolic language that now informs the live audiovisual performances.</p>
+        <p>The most important shift in that process was a change of question. Early on, image generation meant producing isolated pictures: prompt in, artifact out. The work began to cohere only when the question changed. Not <span class="hl">what should this image look like</span>, but: <span class="hl">what world does Signal Bloom actually inhabit?</span></p>
+        <p>The first reference point was Hieronymus Bosch's <em>The Garden of Earthly Delights</em>. Not as something to recreate — what mattered was the method. Bosch built an entire symbolic ecosystem: recurring organisms, impossible architecture, hybrid bodies, strange plants, interconnected narratives. One painting. One world. Endlessly generative.</p>
+        <p>Signal Bloom adopted that structure. The project would develop its own mythology, its own ecology, its own recurring visual species. Rather than generating unrelated images, every study would belong to a single evolving computational world. The movements of the performance do not illustrate separate scenes — they reveal different states of that world.</p>
+        <p>A second milestone was <span class="hl">NoirmakStyle</span>, a custom Flux LoRA trained on a curated dataset built around the project's own visual language. The earliest successful generations from that model form the core of this archive. They are shown here as they were made: as studies, not illustrations.</p>
+      </div>
+      <div class="scroll-hint" aria-hidden="true">SCROLL ↓ OPEN ARCHIVE</div>
+    </section>
+
+    <!-- ============ 01 THE WORLD ============ -->
+    <section id="world" class="band reveal">
+      <header class="band-head">
+        <span class="sec-num">01</span>
+        <h2 class="sec-title" data-glitch data-text="THE WORLD">THE WORLD</h2>
+        <p class="band-note">RECURRING ELEMENTS — THE SYMBOLIC VOCABULARY OF SIGNAL BLOOM. EVERY STUDY BELONGS TO THE SAME EVOLVING ECOSYSTEM.</p>
+      </header>
+      <div class="grid grid-2">
+        <ul class="species-cloud" aria-label="Recurring visual species">
+          <li>LUMINOUS MARBLE BEINGS</li>
+          <li>SIGNAL FLOWERS</li>
+          <li>CHROME BIRDS</li>
+          <li>CRYSTALLINE TOWERS</li>
+          <li>RECURSIVE CATHEDRALS</li>
+          <li>FLOATING GLASS SPHERES</li>
+          <li>HOLOGRAPHIC POLLEN</li>
+          <li>IMPOSSIBLE BOTANICAL FORMS</li>
+          <li>CYBERNETIC VINES</li>
+          <li>REFLECTIVE POOLS</li>
+          <li>FLOATING POLYHEDRA</li>
+          <li>GEOMETRIC CONSTELLATIONS</li>
+          <li>LIVING ARCHITECTURE</li>
+          <li>COMPUTATIONAL GARDENS</li>
+          <li>RECURSIVE LIGHT</li>
+        </ul>
+        <div>
+          <h3 class="arch-h">NOIRMAKSTYLE / TRAINING EMPHASIS</h3>
+          <ul class="spec-list" aria-label="NoirmakStyle LoRA training emphasis">
+            <li><span class="k">DATA_00</span><span class="v">MARBLE SCULPTURE</span></li>
+            <li><span class="k">DATA_01</span><span class="v">QUEER FUTURISM</span></li>
+            <li><span class="k">DATA_02</span><span class="v">GLITCH AESTHETICS</span></li>
+            <li><span class="k">DATA_03</span><span class="v">DATAMOSHING</span></li>
+            <li><span class="k">DATA_04</span><span class="v">CHROMATIC ABERRATION</span></li>
+            <li><span class="k">DATA_05</span><span class="v">IMPOSSIBLE BODIES</span></li>
+            <li><span class="k">DATA_06</span><span class="v">SURREAL ARCHITECTURE</span></li>
+            <li><span class="k">DATA_07</span><span class="v">DIGITAL DECAY</span></li>
+            <li><span class="k">HUE_00</span><span class="v v-cyan">CYAN</span></li>
+            <li><span class="k">HUE_01</span><span class="v v-magenta">MAGENTA</span></li>
+            <li><span class="k">HUE_02</span><span class="v v-gold">GOLD</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="journal-link">
+        <p>This visual language emerged during Week 7, after the migration to the Flux pipeline. The full record of that process lives in the Development Journal.</p>
+        <!-- Swap the span below for <a href="./journal.html"> once the journal node is online. -->
+        <span class="journal-cta" title="Development Journal — coming online">→ READ THE DEVELOPMENT JOURNAL <span class="pending-tag">NODE_PENDING</span></span>
+      </div>
+    </section>
+
+    <!-- ============ MOVEMENT GALLERIES (plates injected by JS) ============ -->
+    <section id="mv-i" class="band band-mv reveal">
+      <header class="band-head">
+        <span class="sec-num">MOVEMENT I</span>
+        <h2 class="sec-title" data-glitch data-text="THE SONG BEFORE LOSS">THE SONG BEFORE LOSS</h2>
+        <p class="mv-lede">Harmony. Organic computation. Signal gardens and living architecture — the world before interruption.</p>
+      </header>
+      <div class="plates" data-mv="0"></div>
+    </section>
+
+    <section id="mv-ii" class="band band-mv reveal">
+      <header class="band-head">
+        <span class="sec-num">MOVEMENT II</span>
+        <h2 class="sec-title" data-glitch data-text="THE FRACTURE">THE FRACTURE</h2>
+        <p class="mv-lede">Corruption enters the ecosystem. Bodies begin dissolving into data. Signal becomes noise.</p>
+      </header>
+      <div class="plates" data-mv="1"></div>
+    </section>
+
+    <section id="mv-iii" class="band band-mv reveal">
+      <header class="band-head">
+        <span class="sec-num">MOVEMENT III</span>
+        <h2 class="sec-title" data-glitch data-text="DESCENT">DESCENT</h2>
+        <p class="mv-lede">The landscape transforms into recursive geometry. Architecture folds inward. The tunnel appears; the threshold is crossed.</p>
+      </header>
+      <div class="plates" data-mv="2"></div>
+    </section>
+
+    <section id="mv-iv" class="band band-mv reveal">
+      <header class="band-head">
+        <span class="sec-num">MOVEMENT IV</span>
+        <h2 class="sec-title" data-glitch data-text="NEGOTIATION">NEGOTIATION</h2>
+        <p class="mv-lede">Human and machine begin collaborating. Identity becomes fluid. Language becomes computational. The environment responds.</p>
+      </header>
+      <div class="plates" data-mv="3"></div>
+    </section>
+
+    <section id="mv-v" class="band band-mv reveal">
+      <header class="band-head">
+        <span class="sec-num">MOVEMENT V</span>
+        <h2 class="sec-title" data-glitch data-text="THE ASCENT">THE ASCENT</h2>
+        <p class="mv-lede">Transformation. Reconstruction. The marble figure rises and the ecosystem blooms into a new state.</p>
+      </header>
+      <div class="plates" data-mv="4"></div>
+    </section>
+
+    <section id="mv-vi" class="band band-mv reveal">
+      <header class="band-head">
+        <span class="sec-num">MOVEMENT VI</span>
+        <h2 class="sec-title" data-glitch data-text="THE TURN">THE TURN</h2>
+        <p class="mv-lede">The search for certainty. Collapse. Paradise destabilizes and the recursive world begins consuming itself.</p>
+      </header>
+      <div class="plates" data-mv="5"></div>
+    </section>
+
+    <section id="mv-vii" class="band band-mv reveal">
+      <header class="band-head">
+        <span class="sec-num">MOVEMENT VII</span>
+        <h2 class="sec-title" data-glitch data-text="SIGNAL BLOOM">SIGNAL BLOOM</h2>
+        <p class="mv-lede">The final ecology. Not a return — a becoming. A new computational world where performer, machine, and emergence coexist.</p>
+      </header>
+      <div class="plates" data-mv="6"></div>
+    </section>
+
+    <!-- ============ Ω REFLECTION ============ -->
+    <section id="reflection" class="band band-narrow reveal final">
+      <header class="band-head">
+        <span class="sec-num">Ω</span>
+        <h2 class="sec-title" data-glitch data-text="REFLECTION">REFLECTION</h2>
+      </header>
+      <div class="statement">
+        <p>These studies are not storyboards. The live performance will never recreate these scenes exactly.</p>
+        <p>They are visual research. Every image in this archive helped define the symbolic vocabulary of Signal Bloom — its species, its architecture, its weather.</p>
+        <p>What the studies established is not a set of pictures but a computational world capable of continuously generating new ones.</p>
+        <p class="big-statement hl" data-glitch data-text="Signal Bloom is not about producing images. It is about designing conditions where worlds can emerge.">
+          Signal Bloom is not about producing images. It is about designing conditions where worlds can emerge.
+        </p>
+        <p class="archive-note" data-typewriter>Archive continues. Further studies will be appended as the system evolves.</p>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="foot-row">
+        <span>SIGNAL_BLOOM / VISUAL_STUDIES</span>
+        <a href="./index.html">← BACK TO SIGNAL_BLOOM</a>
+        <span>CAM_MANSANAREZ | NOIR MAK</span>
+      </div>
+      <div class="foot-row foot-dim">
+        <span>VISUAL RESEARCH ARCHIVE</span>
+        <span>RENDERED BY SIGNAL BLOOM</span>
+        <a href="https://noirmak.com" target="_blank" rel="noopener">noirmak.com ↗</a>
+      </div>
+    </footer>
+  </main>
+
+  <!-- ============ LIGHTBOX ============ -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Study viewer" hidden>
+    <button class="lb-close" id="lb-close" type="button" aria-label="Close viewer">✕ CLOSE</button>
+    <button class="lb-arrow lb-prev" id="lb-prev" type="button" aria-label="Previous study">◂</button>
+    <figure class="lb-stage">
+      <img id="lb-img" src="" alt="" />
+      <figcaption class="lb-caption">
+        <span id="lb-cat" class="lb-cat"></span>
+        <span id="lb-mv" class="lb-mv"></span>
+      </figcaption>
+    </figure>
+    <button class="lb-arrow lb-next" id="lb-next" type="button" aria-label="Next study">▸</button>
+  </div>
+
+  <script type="module" src="/src/visual-studies.js"></script>
+</body>
+</html>

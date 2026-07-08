@@ -181,6 +181,11 @@ body::before {
 }
 #nav-list a:hover, #nav-list a.active { color: var(--signal); }
 #nav-list a.active::before { content: "▸ "; color: var(--corrupt); }
+/* cross-page links (index ↔ visual studies) sit apart from the anchors */
+#nav-list .nav-page { border-top: 1px solid var(--line); margin-top: 6px; padding-top: 6px; }
+#nav-list .nav-page:first-child { border-top: none; margin-top: 0; padding-top: 0; border-bottom: 1px solid var(--line); margin-bottom: 6px; padding-bottom: 6px; }
+#nav-list .nav-page a { color: var(--line-hot); }
+#nav-list .nav-page a:hover { color: var(--signal); }
 @media (max-width: 760px) { #index-nav { right: 14px; top: 10px; } }
 
 /* =====================================================================
