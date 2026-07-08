@@ -572,6 +572,7 @@ function start() {
         thesis:      { hue: 0.74, energy: 0.45, chaos: 0.3, corrupt: 0.35 },
         problem:     { hue: 0.86, energy: 0.6, chaos: 0.55, corrupt: 0.7 },
         vision:      { hue: 0.78, energy: 0.55, chaos: 0.35, corrupt: 0.45 },
+        'visual-studies': { hue: 0.82, energy: 0.6, chaos: 0.35, corrupt: 0.5 },
         emergence:   { hue: 0.58, energy: 0.6, chaos: 0.4, corrupt: 0.3 },
         architecture:{ hue: 0.66, energy: 0.45, chaos: 0.25, corrupt: 0.25 },
         'open-systems': { hue: 0.86, energy: 0.5, chaos: 0.3, corrupt: 0.4 },
