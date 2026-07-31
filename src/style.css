@@ -371,6 +371,10 @@ main { position: relative; z-index: 1; }
    ===================================================================== */
 .problem-flow > p { font-size: clamp(16px, 2.4vw, 22px); margin-bottom: 26px; max-width: 60ch; }
 .problem-flow em { color: var(--alert); font-style: normal; }
+/* .big-q is a direct child of .problem-flow, which otherwise outranks the
+   shared .big-q/.big-statement rule above on specificity (class+type beats
+   class alone) — this restores its intended display size. */
+.problem-flow > .big-q { font-size: clamp(24px, 5.5vw, 56px); max-width: 22ch; }
 .terminal-lines {
   border: 1px solid var(--line); padding: 18px 20px; margin-bottom: 34px;
   display: flex; flex-direction: column; gap: 7px; font-size: 15px;
@@ -387,72 +391,60 @@ main { position: relative; z-index: 1; }
 .big-statement { max-width: 26ch; margin-bottom: 10px; }
 
 /* =====================================================================
-   MOVEMENTS — injected, code as texture
+   MOVEMENTS — injected, compact code-as-texture strip
    ===================================================================== */
-.movements { display: flex; flex-direction: column; }
-.movement {
-  border: 1px solid var(--line); border-bottom: none;
-  display: grid; grid-template-columns: 88px 1fr 1.05fr;
-  align-items: stretch; transition: var(--t);
+.mv-timeline {
+  display: flex; overflow-x: auto; -webkit-overflow-scrolling: touch;
+  border: 1px solid var(--line); margin: 8px 0 30px;
 }
-.movement:last-child { border-bottom: 1px solid var(--line); }
-.movement:hover { border-color: var(--line-hot); }
-.mv-num {
-  display: flex; align-items: flex-start; justify-content: center;
-  padding: 18px 0; font-size: 22px; color: var(--corrupt);
-  border-right: 1px solid var(--line); letter-spacing: 0.05em;
+.movement.mv-chip {
+  flex: 0 0 148px; min-width: 148px;
+  border-right: 1px solid var(--line);
+  display: flex; flex-direction: column;
+  transition: var(--t);
 }
-.mv-body { padding: 18px 22px; border-right: 1px solid var(--line); }
-.mv-title {
-  font-size: clamp(20px, 3vw, 30px); color: var(--signal);
-  text-transform: uppercase; letter-spacing: 0.04em; line-height: 1.05;
+.movement.mv-chip:last-child { border-right: none; }
+.movement.mv-chip:hover { background: rgba(0,240,255,0.05); }
+.mv-chip .mv-code {
+  position: relative; height: 96px; padding: 8px; overflow: hidden;
+  background: rgba(0,6,8,0.5); border-bottom: 1px solid var(--line);
 }
-.mv-tags {
-  margin-top: 8px; font-size: 12.5px; letter-spacing: 0.13em;
-  color: var(--alert); text-transform: uppercase;
-}
-.mv-desc { margin-top: 14px; font-size: 14.5px; line-height: 1.55; color: var(--ink); max-width: 48ch; }
-.mv-code {
-  position: relative; padding: 16px 16px 16px 0; overflow: hidden;
-  background: rgba(0,6,8,0.5);
-}
-.mv-canvas {
+.mv-chip .mv-canvas {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   z-index: 0; opacity: 0.68;
   pointer-events: none; display: block;
 }
-.mv-code pre {
-  font-size: 12.5px; line-height: 1.55; color: var(--ink-dim);
-  white-space: pre; overflow-x: auto; counter-reset: ln;
+.mv-chip .mv-code pre {
+  font-size: 9px; line-height: 1.4; color: var(--ink-dim);
+  white-space: pre; overflow: hidden;
   position: relative; z-index: 1;
 }
-.mv-code .line { display: block; padding-left: 44px; position: relative; }
-.mv-code .line::before {
-  counter-increment: ln; content: counter(ln, decimal-leading-zero);
-  position: absolute; left: 0; width: 34px; text-align: right;
-  color: var(--ink-faint);
+.mv-chip .mv-code .line { display: block; }
+.mv-chip .mv-code .line.hot { color: var(--signal); }
+.mv-chip .mv-code .cm { color: var(--ink-faint); }
+.mv-chip .mv-code::after {
+  content: attr(data-file); position: absolute; top: 4px; right: 6px;
+  font-size: 7.5px; letter-spacing: 0.14em; color: var(--ink-faint);
+  text-transform: uppercase; z-index: 1;
 }
-.mv-code .line.hot { color: var(--signal); }
-.mv-code .line.hot::before { color: var(--corrupt); }
-.mv-code .cm { color: var(--ink-faint); }
-.mv-code::after {
-  content: attr(data-file); position: absolute; top: 6px; right: 12px;
-  font-size: 9px; letter-spacing: 0.2em; color: var(--ink-faint);
-  text-transform: uppercase;
+.mv-chip .mv-num {
+  padding: 10px 12px 0; font-size: 15px; color: var(--corrupt);
+  letter-spacing: 0.05em; border-right: none;
 }
-@media (max-width: 900px) {
-  .movement { grid-template-columns: 56px 1fr; }
-  .mv-num { font-size: 16px; padding: 14px 0; }
-  .mv-body { border-right: none; }
-  .mv-code { grid-column: 1 / -1; border-top: 1px solid var(--line); padding-left: 16px; }
+.mv-chip .mv-title {
+  padding: 3px 12px 14px; font-size: 13px; color: var(--signal);
+  text-transform: uppercase; letter-spacing: 0.03em; line-height: 1.2;
+}
+@media (max-width: 760px) {
+  .movement.mv-chip { flex: 0 0 128px; min-width: 128px; }
 }
 
 /* =====================================================================
-   VISUAL STUDIES TEASER — contact strip, one study per movement
+   VISUAL STUDIES TEASER — curated highlight strip
    ===================================================================== */
 .vs-strip {
-  display: grid; grid-template-columns: repeat(7, 1fr); gap: 10px;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
   margin: 34px 0 28px;
 }
 .vs-strip a { position: relative; display: block; border: 1px solid var(--line); transition: var(--t); }
@@ -490,9 +482,6 @@ main { position: relative; z-index: 1; }
 }
 .def-term { color: var(--corrupt); font-size: clamp(18px, 3vw, 26px); min-width: 13ch; text-transform: uppercase; }
 .def-body { color: var(--ink); font-size: clamp(15px, 2vw, 20px); }
-.improv-actors { margin: 8px 0; }
-.improv-actors li { font-size: 14.5px; letter-spacing: 0.08em; color: var(--ink-dim); padding: 5px 0; }
-.improv-actors li::before { content: "› "; color: var(--signal); }
 .emergence-conclusion { font-size: clamp(20px, 4vw, 40px); color: var(--signal); margin-top: 16px; line-height: 1.1; }
 
 /* =====================================================================
@@ -596,38 +585,13 @@ main { position: relative; z-index: 1; }
 .crystal-chain i { color: var(--corrupt); font-style: normal; font-size: 16px; }
 
 /* =====================================================================
-   COLLABORATION
-   ===================================================================== */
-.collab-label { font-size: 11px; letter-spacing: 0.3em; color: var(--ink-dim); text-transform: uppercase; }
-.collab-name { font-size: clamp(28px, 6vw, 60px); color: var(--corrupt); letter-spacing: 0.03em; margin: 6px 0 22px; }
-.collab p { max-width: 60ch; margin-bottom: 18px; }
-.collab-areas { display: flex; flex-wrap: wrap; gap: 10px; }
-.collab-areas li { border: 1px solid var(--line); padding: 8px 12px; font-size: 13px; letter-spacing: 0.1em; color: var(--ink); }
-
-/* =====================================================================
-   ROADMAP
-   ===================================================================== */
-.roadmap { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
-.rm-col { border: 1px solid var(--line); border-right: none; padding: 20px; }
-.rm-col:last-child { border-right: 1px solid var(--line); }
-.rm-h { font-size: 12px; letter-spacing: 0.24em; margin-bottom: 14px; }
-.rm-h.done { color: var(--signal); }
-.rm-h.prog { color: var(--alert); }
-.rm-h.next { color: var(--ink-dim); }
-.rm-list li { font-size: 14px; letter-spacing: 0.05em; padding: 8px 0; border-bottom: 1px dotted var(--line); color: var(--ink); }
-.rm-list li:last-child { border-bottom: none; }
-.rm-col:nth-child(1) .rm-list li { color: var(--ink); }
-.rm-col:nth-child(2) .rm-list li { color: #d7e9b0; }
-.rm-col:nth-child(3) .rm-list li { color: var(--ink-dim); }
-@media (max-width: 760px) {
-  .roadmap { grid-template-columns: 1fr; }
-  .rm-col { border-right: 1px solid var(--line); border-bottom: none; }
-}
-
-/* =====================================================================
    STATEMENT + FOOTER
    ===================================================================== */
 .statement p { font-size: clamp(16px, 2.6vw, 24px); margin-bottom: 18px; color: var(--ink); max-width: 50ch; }
+/* same specificity issue as .problem-flow > .big-q above — .statement p
+   otherwise wins over the shared .big-q/.big-statement rule and flattens
+   the closing line to normal paragraph size and color. */
+.statement .big-statement { font-size: clamp(24px, 5.5vw, 56px); color: var(--signal); max-width: 26ch; }
 .final { padding-bottom: 120px; }
 
 .site-footer {

@@ -228,19 +228,18 @@ function renderMovements() {
   const list = document.getElementById('movements-list')
   if (!list) return
   list.innerHTML = MOVEMENTS.map((m, i) => {
-    const lines = m.code.map(([txt, hot]) => {
-      const html = txt === '' ? '&nbsp;' : esc(txt).replace(/(\/\/.*$)/, '<span class="cm">$1</span>')
-      return `<span class="line${hot ? ' hot' : ''}">${html}</span>`
+    // compact chip: only the hot-flagged lines carry over as texture —
+    // full desc/tags move to the aria-label since the visible copy shrinks.
+    const hotLines = m.code.filter(([, hot]) => hot).slice(0, 3).map(([txt]) => {
+      const html = esc(txt).replace(/(\/\/.*$)/, '<span class="cm">$1</span>')
+      return `<span class="line hot">${html}</span>`
     }).join('')
+    const label = esc(`Movement ${m.roman} — ${m.title}. ${m.tags}. ${m.desc}`)
     return `
-      <li class="movement" data-mv="${i}">
+      <li class="movement mv-chip" data-mv="${i}" aria-label="${label}">
+        <div class="mv-code" data-file="${m.file}"><canvas class="mv-canvas" aria-hidden="true"></canvas><pre aria-hidden="true">${hotLines}</pre></div>
         <div class="mv-num">${m.roman}</div>
-        <div class="mv-body">
-          <h3 class="mv-title">${m.title}</h3>
-          <p class="mv-tags">${m.tags}</p>
-          <p class="mv-desc">${m.desc}</p>
-        </div>
-        <div class="mv-code" data-file="${m.file}"><canvas class="mv-canvas" aria-hidden="true"></canvas><pre>${lines}</pre></div>
+        <h3 class="mv-title">${m.title}</h3>
       </li>`
   }).join('')
 }
@@ -565,21 +564,14 @@ function start() {
       const id = e.target.id
       navLinks.forEach((a) => a.classList.toggle('active', a.getAttribute('href') === '#' + id))
       // default per-section mood by hue family
-      if (id === 'movements') return // movements handled by finer observer
+      if (id === 'performance-world') return // finer per-movement observer handles this section
       const map = {
-        hero:        { hue: 0.52, energy: 0.5, chaos: 0.2, corrupt: 0.25 },
-        overview:    { hue: 0.52, energy: 0.4, chaos: 0.2, corrupt: 0.15 },
-        thesis:      { hue: 0.74, energy: 0.45, chaos: 0.3, corrupt: 0.35 },
-        problem:     { hue: 0.86, energy: 0.6, chaos: 0.55, corrupt: 0.7 },
-        vision:      { hue: 0.78, energy: 0.55, chaos: 0.35, corrupt: 0.45 },
-        'visual-studies': { hue: 0.82, energy: 0.6, chaos: 0.35, corrupt: 0.5 },
-        emergence:   { hue: 0.58, energy: 0.6, chaos: 0.4, corrupt: 0.3 },
-        architecture:{ hue: 0.66, energy: 0.45, chaos: 0.25, corrupt: 0.25 },
-        'open-systems': { hue: 0.86, energy: 0.5, chaos: 0.3, corrupt: 0.4 },
-        crystallization:{ hue: 0.8, energy: 0.7, chaos: 0.45, corrupt: 0.4 },
-        collaboration:{ hue: 0.88, energy: 0.5, chaos: 0.3, corrupt: 0.5 },
-        roadmap:     { hue: 0.5, energy: 0.4, chaos: 0.2, corrupt: 0.15 },
-        statement:   { hue: 0.55, energy: 0.85, chaos: 0.4, corrupt: 0.35 },
+        hero:               { hue: 0.52, energy: 0.5,  chaos: 0.2,  corrupt: 0.25 },
+        question:           { hue: 0.74, energy: 0.5,  chaos: 0.4,  corrupt: 0.45 },
+        system:             { hue: 0.66, energy: 0.45, chaos: 0.25, corrupt: 0.25 },
+        emergence:          { hue: 0.8,  energy: 0.7,  chaos: 0.45, corrupt: 0.4 },
+        'performance-world':{ hue: 0.78, energy: 0.55, chaos: 0.35, corrupt: 0.45 },
+        instrument:         { hue: 0.55, energy: 0.7,  chaos: 0.35, corrupt: 0.3 },
       }
       if (map[id]) target = { ...map[id] }
     })
