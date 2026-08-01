@@ -366,6 +366,41 @@ main { position: relative; z-index: 1; }
 .arch-diagram { max-width: 100%; margin-top: 28px; }
 .arch-diagram img { aspect-ratio: auto; }
 
+/* clickable figures — resets the <button> wrapper so it reads as the image */
+.diagram-view {
+  display: block; width: 100%; padding: 0; margin: 0; border: 0;
+  background: none; cursor: zoom-in; font: inherit;
+}
+.diagram-view:hover img { filter: saturate(1.25) contrast(1.08); }
+
+/* ----- lightbox — full-res view above the scanline/grain overlay,
+   so the diagram reads clearly without the ambient degrade effects ----- */
+.lightbox {
+  position: fixed; inset: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.94); padding: 54px 18px 42px;
+}
+.lightbox[hidden] { display: none; }
+.lb-stage { max-width: min(1400px, 92vw); margin: 0; text-align: center; }
+.lb-stage img {
+  max-width: 100%; max-height: 80vh; width: auto; height: auto;
+  margin: 0 auto; border: 1px solid var(--line-hot);
+}
+.lb-caption {
+  display: flex; justify-content: center; gap: 22px; padding-top: 12px;
+  font-size: 11px; letter-spacing: 0.24em; text-transform: uppercase;
+}
+.lb-cat { color: var(--signal); }
+.lb-mv { color: var(--ink-dim); }
+.lb-close {
+  position: absolute; top: 16px; right: 18px;
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.22em;
+  color: var(--signal); background: rgba(0,0,0,0.72);
+  border: 1px solid var(--line-hot); padding: 7px 12px; cursor: pointer;
+  transition: var(--t);
+}
+.lb-close:hover { color: var(--bg); background: var(--corrupt); border-color: var(--corrupt); }
+
 /* =====================================================================
    PROBLEM / TERMINAL
    ===================================================================== */

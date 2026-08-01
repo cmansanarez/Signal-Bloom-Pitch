@@ -480,6 +480,36 @@ function initTypewriters() {
 }
 
 /* ---------------------------------------------------------------------
+   DIAGRAM LIGHTBOX — single-image viewer for the system overview figure,
+   opened above the scanline/grain overlay so it reads at full clarity.
+   --------------------------------------------------------------------- */
+function initDiagramLightbox() {
+  const trigger = document.querySelector('.diagram-view')
+  const box = document.getElementById('diagram-lightbox')
+  const closeBtn = document.getElementById('dlb-close')
+  if (!trigger || !box || !closeBtn) return
+
+  const open = () => {
+    box.hidden = false
+    document.body.style.overflow = 'hidden'
+    closeBtn.focus()
+  }
+  const close = () => {
+    box.hidden = true
+    document.body.style.overflow = ''
+    trigger.focus()
+  }
+
+  trigger.addEventListener('click', open)
+  closeBtn.addEventListener('click', close)
+  box.addEventListener('click', (ev) => { if (ev.target === box) close() })
+  document.addEventListener('keydown', (ev) => {
+    if (box.hidden || ev.key !== 'Escape') return
+    close()
+  })
+}
+
+/* ---------------------------------------------------------------------
    RUNTIME
    --------------------------------------------------------------------- */
 function start() {
@@ -488,6 +518,7 @@ function start() {
   renderMovements()
   initMovementCanvases()
   initTypewriters()
+  initDiagramLightbox()
 
   // Pause the crystallization crossfade when off-screen
   const bloomStack = document.querySelector('.bloom-stack')
