@@ -296,6 +296,21 @@ main { position: relative; z-index: 1; }
   margin-top: 26px; font-size: 11px; letter-spacing: 0.18em;
   color: var(--alert); text-transform: uppercase;
 }
+.hero-announce {
+  margin-top: 28px; border: 1px solid var(--corrupt); padding: 16px 20px;
+  background: rgba(20,0,16,0.35);
+}
+.hero-announce-label {
+  font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--corrupt); margin-bottom: 8px;
+}
+.hero-announce-details {
+  font-size: 14px; letter-spacing: 0.06em; line-height: 1.6;
+  color: var(--corrupt); text-transform: uppercase;
+}
+/* stays lit — unlike .arch-note's typewriter, this shouldn't fade to dim */
+.hero-announce-details .tw-char { animation: none; color: var(--corrupt); }
+.hero-announce-details .tw-cursor { color: var(--corrupt); }
 .scroll-hint {
   position: absolute; bottom: 26px; left: 46px; font-size: 10px;
   letter-spacing: 0.4em; color: var(--ink-dim); text-transform: uppercase;
