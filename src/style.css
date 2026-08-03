@@ -270,6 +270,11 @@ main { position: relative; z-index: 1; }
   left: 0; bottom: -22px; font-size: 10px; letter-spacing: 0.26em;
   color: var(--ink-dim); text-transform: uppercase;
 }
+.hero-credit {
+  position: absolute; left: 0; bottom: -40px;
+  font-size: 10px; letter-spacing: 0.26em;
+  color: var(--ink-dim); text-transform: uppercase;
+}
 .hero-code {
   position: absolute; inset: 0; padding: 14px;
   font-size: 11px; line-height: 1.45; color: #fff;
